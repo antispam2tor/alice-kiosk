@@ -1,6 +1,6 @@
 import { FormEvent, useState } from 'react';
 import { ArrowRight, Check, MonitorSmartphone, ShieldCheck, Wifi } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { activateDevice } from '../api';
 import { BrandMark } from '../components/BrandMark';
 
@@ -52,7 +52,7 @@ export function ActivatePage() {
           </form>
           <p className="demo-note">Trying the demo? Use code <button type="button" onClick={() => setDigits('482731')}>482 731</button>.</p>
         </div>
-        <a href="/admin" className="admin-link">Open admin demo <ArrowRight size={14} /></a>
+        <Link to="/admin" className="admin-link">Open admin demo <ArrowRight size={14} /></Link>
       </section>
     </main>
   );

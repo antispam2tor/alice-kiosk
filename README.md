@@ -2,6 +2,8 @@
 
 Alice is a multi-location lobby check-in MVP for law firms, dental groups, and other professional-services organizations. It is built from scratch around an **Organization → Location → Kiosk** hierarchy rather than retrofitting a single-office visitor log.
 
+**[Open the live interactive demo](https://antispam2tor.github.io/alice-kiosk/)** · Pairing code: **482 731**
+
 ![Alice kiosk](docs/kiosk-preview.svg)
 
 ## What is included
@@ -28,6 +30,8 @@ npm run dev
 Open [http://localhost:5173](http://localhost:5173) and use pairing code **482 731**. The admin demo is at [http://localhost:5173/admin](http://localhost:5173/admin).
 
 The in-memory demo intentionally contains no real client data and resets when the API restarts.
+
+The GitHub Pages build is also a browser-only demonstration. It never sends visitor details to a server and must not be used for real client or patient information.
 
 ## Run with PostgreSQL
 

@@ -1,5 +1,6 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { ArrowLeft, ArrowRight, BriefcaseBusiness, CalendarCheck, Check, ChevronRight, Clock3, LockKeyhole, Package, Sparkles, UserRoundPlus } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { clearDevice, getConfig, submitCheckIn } from '../api';
 import { BrandMark } from '../components/BrandMark';
 import type { CheckInPayload, CheckInResult, KioskConfig, VisitType } from '../types';
@@ -14,6 +15,7 @@ const choices = [
 ];
 
 export function KioskPage() {
+  const navigate = useNavigate();
   const [config, setConfig] = useState<KioskConfig | null>(null);
   const [screen, setScreen] = useState<Screen>('home');
   const [form, setForm] = useState<CheckInPayload>(emptyForm);
@@ -21,7 +23,7 @@ export function KioskPage() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => { getConfig().then(setConfig).catch(() => { location.href = '/activate'; }); }, []);
+  useEffect(() => { getConfig().then(setConfig).catch(() => navigate('/activate', { replace: true })); }, [navigate]);
   useEffect(() => {
     if (screen === 'home') return;
     const timer = setTimeout(reset, screen === 'success' ? 12000 : 120000);
@@ -66,7 +68,7 @@ export function KioskPage() {
           <button className="secondary-button" onClick={reset}>Done</button><small className="auto-reset">This screen will clear automatically.</small>
         </section>
       )}
-      <footer className="kiosk-footer"><span>Powered by <strong>Alice</strong></span><button onClick={async () => { if (confirm('Unpair this kiosk?')) { await clearDevice(); location.href = '/activate'; } }}>Device settings</button></footer>
+      <footer className="kiosk-footer"><span>Powered by <strong>Alice</strong></span><button onClick={async () => { if (confirm('Unpair this kiosk?')) { await clearDevice(); navigate('/activate', { replace: true }); } }}>Device settings</button></footer>
     </main>
   );
 }

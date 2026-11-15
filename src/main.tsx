@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { ActivatePage } from './pages/ActivatePage';
 import { KioskPage } from './pages/KioskPage';
 import { AdminPage } from './pages/AdminPage';
@@ -17,6 +17,7 @@ function App() {
   );
 }
 
+const Router = import.meta.env.VITE_STATIC_DEMO === 'true' ? HashRouter : BrowserRouter;
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode><BrowserRouter><App /></BrowserRouter></React.StrictMode>,
+  <React.StrictMode><Router><App /></Router></React.StrictMode>,
 );
